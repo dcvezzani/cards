@@ -5,6 +5,13 @@ import App from './App'
 import router from './router'
 import io from 'socket.io-client';
 import VueSocketio from 'vue-socket.io';
+import jQuery from 'jquery';
+import jQueryUi from 'jquery-ui-dist/jquery-ui.js';
+
+// bootstrap jquery ui
+window.jQuery = jQuery;
+window.$ = window.jQuery;
+window.$ = $.extend(jQueryUi)
 
 Vue.config.productionTip = false
 
