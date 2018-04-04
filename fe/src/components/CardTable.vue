@@ -1,15 +1,37 @@
 <template>
   <div class="card-table">
-		<Card></Card>
+		<div class="container">
+			<div class="columns">
+				<div class="column"> </div>
+				<div id="player-1" class="column">
+					<Hand></Hand>
+				</div>
+				<div id="player-2" class="column">
+					<Hand></Hand>
+				</div>
+				<div class="column"> </div>
+			</div>
+			<div class="columns">
+				<div class="column"> </div>
+				<div id="player-3" class="column">
+					<Hand></Hand>
+				</div>
+				<div id="player-4" class="column">
+					<Hand></Hand>
+				</div>
+				<div class="column"> </div>
+			</div>
+		</div>
   </div>
 </template>
 
 <script>
+import Hand from '@/components/Hand'
 import Card from '@/components/Card'
 
 export default {
   name: 'CardTable',
-  components: { Card }, 
+  components: { Hand, Card }, 
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

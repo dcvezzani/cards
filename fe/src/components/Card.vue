@@ -13,9 +13,6 @@ export default {
     }
   },
   sockets:{
-    connect: function(){
-      console.log('socket connected')
-    },
   },
 	mounted() {
 		$( function() {
