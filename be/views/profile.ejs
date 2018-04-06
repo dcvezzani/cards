@@ -27,7 +27,9 @@
                     <p>
                         <strong>id</strong>: <%= user.id %><br>
                         <strong>email</strong>: <%= user.email %><br>
-                        <strong>password</strong>: <%= user.password %>
+                        <strong>password</strong>: <%= user.password %><br>
+												<strong>token</strong>: <%= token %><br>
+												<strong>game</strong>: <a href="http://10.20.20.218:8080?token=<%= token %>">cards</a>
                     </p>
 
             </div>

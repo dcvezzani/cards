@@ -1,6 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
+const express = require('express');
+const router = express.Router();
+import { JWT_SECRET } from '../config/constants';
+import jwt from 'jsonwebtoken';
+const passport = require('passport');
 require('../config/passport')(passport); // pass passport for configuration
 
 /* GET home page. */
@@ -36,12 +38,21 @@ router.post('/signup', passport.authenticate('local-signup', {
 
 
 /* GET profile. */
-router.get('/profile', isLoggedIn, function(req, res) {
-	// console.log(['profile:req', JSON.stringify(req.user)])
-	res.render('profile.ejs', {
-			user : req.user // get the user out of session and pass to template
-	});
-});
+router.get('/profile', isLoggedIn, 
+	function(req, res, next) {
+
+		// console.log(['profile:req', JSON.stringify(req.user), profileData(req), req.get('Content-Type')])
+		if(!(req.get('Content-Type') === 'application/json')) {
+			return next();
+		}
+		res.json(profileData(req));
+	},
+	function(req, res) {
+
+		// console.log(['profile:req', JSON.stringify(req.user)])
+		res.render('profile.ejs', profileData(req));
+	}
+);
 
 /* GET logout. */
 router.get('/logout', function(req, res) {
@@ -58,5 +69,23 @@ function isLoggedIn(req, res, next) {
 	// if they aren't redirect them to the home page
 	res.redirect('/');
 }
+
+function requestJson(req, res, next) {
+  if(!(req.get('Content-Type') === 'application/json')) {
+		return;
+	}
+	return next();
+}
+
+function profileData(req) {
+	const token = jwt.sign({ email: req.user.email }, JWT_SECRET, {
+		expiresIn: 86400 // expires in 24 hours
+	});
+
+	return {
+			user : req.user, // get the user out of session and pass to template
+			token
+	}
+};
 
 module.exports = router;

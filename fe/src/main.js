@@ -13,12 +13,15 @@ window.jQuery = jQuery;
 window.$ = window.jQuery;
 window.$ = $.extend(jQueryUi)
 
+window.Event = new Vue();
+
 Vue.config.productionTip = false
 
 import './assets/sass/main.scss'
 
 // Vue.use(VueSocketio, io('http://games.reliacode.com:8085', { path: '/cards/socket.io'}));
-Vue.use(VueSocketio, io('http://127.0.0.1:3001', { path: '/cards/socket.io'}));
+// Vue.use(VueSocketio, io('http://127.0.0.1:3001', { path: '/cards/socket.io'}));
+Vue.use(VueSocketio, io('http://10.20.20.218:3001', { path: '/cards/socket.io'}));
 
 /* eslint-disable no-new */
 new Vue({

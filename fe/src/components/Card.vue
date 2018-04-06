@@ -1,12 +1,13 @@
 <template>
-	<div class="card draggable ui-widget-content">
-		<p>Drag me around</p>
+	<div :id="uuid" class="card draggable ui-widget-content">
+		<p>{{ text }}</p>
 	</div>
 </template>
 
 <script>
 export default {
   name: 'Card',
+	props: [ 'uuid', 'text' ], 
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
@@ -39,6 +40,6 @@ a {
   color: #42b983;
 }
 
-.draggable { width: 150px; height: 150px; padding: 0.5em; border: 1px solid black; background-color: white; }
+.draggable { width: 50px; height: 50px; padding: 0.5em; border: 1px solid black; background-color: white; font-size: 8pt; z-index: 100; margin-bottom: 20px; }
 
 </style>
