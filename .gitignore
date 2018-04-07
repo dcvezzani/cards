@@ -21,3 +21,5 @@ selenium-debug.log
 
 .git-bak
 .DS_Store
+
+*.sqlite3
